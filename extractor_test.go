@@ -46,6 +46,25 @@ func TestGetURLsFromHTML(t *testing.T) {
 			`,
 			expected: []string{"https://blog.boot.dev/path/one", "https://other.com/path/one"},
 		},
+		{
+			name:     "Absolute and relative URLs",
+			inputURL: "https://blog.boot.dev",
+			inputBody: `
+			<html>
+				<body>
+					<a href="ssh://user:password@temp.com">
+						<span>Boot.dev</span>
+					</a>
+					<div>
+						<a href="https://other.com/path/one">
+							<span>Boot.dev</span>
+						</a>
+					</div>
+				</body>
+			</html>
+			`,
+			expected: []string{"ssh://user:password@temp.com", "https://other.com/path/one"},
+		},
 	}
 
 	for i, tc := range tests {
