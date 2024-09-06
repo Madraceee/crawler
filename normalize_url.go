@@ -17,7 +17,7 @@ func normalize(inputURL string) (string, error) {
 		outputURL += "/"
 	}
 
-	if len(parsedUrl.Path) > 0 && parsedUrl.Path[len(parsedUrl.Path)-1] == '/' {
+	if len(parsedUrl.Path) > 1 && parsedUrl.Path[len(parsedUrl.Path)-1] == '/' {
 		outputURL = outputURL[:len(outputURL)-1]
 	}
 
